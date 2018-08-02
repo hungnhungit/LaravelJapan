@@ -9,10 +9,16 @@
 namespace App;
 
 
+use Illuminate\Support\Facades\Auth;
+
 class AppLaravel
 {
     protected $models = [
-        'User' => User::class
+        'User' => User::class,
+        'Menu' => Menu::class,
+        'Setting' => Setting::class,
+        'Permission' => Permission::class,
+        'Role' => Role::class,
     ];
 
     public function model($name){
@@ -36,6 +42,23 @@ class AppLaravel
     }
     public function getShow(){
         return "done !!";
+    }
+
+    public function getUser($id = null){
+        if(isset($id)){
+            return User::findOrFail($id);
+        }
+        if(Auth::check()){
+            return Auth::user();
+        }
+        return null;
+
+    }
+    public function can($role){
+        if ($this->getUser()->hasPermission($role)){
+            return true;
+        }
+        return abort(404);
     }
 
 

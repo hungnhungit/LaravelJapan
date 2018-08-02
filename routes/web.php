@@ -12,12 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    echo phpinfo();
 });
 
 
 Route::get('test',function(){
-    dd(config('LaraJapan'));
+
+
 });
 Auth::routes();
 
