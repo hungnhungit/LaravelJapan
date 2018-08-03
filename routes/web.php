@@ -11,15 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    echo phpinfo();
+Route::Auth();
+
+Route::group(['as' => '','prefix'=>'admin'],function (){
+    Route::get('/login', ['uses' => 'Auth\LoginController@showLoginForm','as' => 'login']);
+    Route::get('/login', ['uses' => 'Auth\LoginController@showLoginForm','as' => 'login']);
+
+    Route::group(['middleware'=>'admin.user'],function(){
+        Route::get('/dashboard', ['uses' =>'LaraJapanController@index','as' => 'dashboard']);
+    });
 });
 
+Route::get('test',function (){
 
-Route::get('test',function(){
-
+    setting('admin.bg_image');
 
 });
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

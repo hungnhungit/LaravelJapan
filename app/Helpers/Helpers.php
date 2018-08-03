@@ -1,7 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: HungNT
- * Date: 02/08/2018
- * Time: 11:27
- */
+
+
+
+function LaraJapanAssert($link){
+}
+function test(){
+
+}
+
+if(!function_exists('setting')){
+    function setting($key){
+        return \App\Facade\LaraJapan::setting($key);
+    }
+
+}

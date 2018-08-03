@@ -3,5 +3,9 @@
 
 
 return [
-    'model' => 'User'
+    'model' => 'User',
+
+    'additional_css' => [],
+
+    'additional_js' => []
 ];

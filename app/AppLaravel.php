@@ -19,6 +19,7 @@ class AppLaravel
         'Setting' => Setting::class,
         'Permission' => Permission::class,
         'Role' => Role::class,
+        'MenuItem' => MenuItem::class,
     ];
 
     public function model($name){
@@ -59,6 +60,13 @@ class AppLaravel
             return true;
         }
         return abort(404);
+    }
+
+    public function setting($key){
+        if(isset($key)){
+            return $this->modelClass('Setting')::where('key',$key)->first()->value;
+        }
+        return '';
     }
 
 
